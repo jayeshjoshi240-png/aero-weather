@@ -1,0 +1,137 @@
+:root {
+    --bg-deep-space: #070913;
+    --glass-matte: rgba(255, 255, 255, 0.02);
+    --glass-border-light: rgba(255, 255, 255, 0.07);
+    --glass-reactive: rgba(255, 255, 255, 0.06);
+    --neon-cyan: #00f0ff;
+    --neon-glow: rgba(0, 240, 255, 0.25);
+    --font-primary: #f1f5f9;
+    --font-secondary: #64748b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+body {
+    background-color: var(--bg-deep-space);
+    background-image: radial-gradient(circle at 10% 20%, rgba(16, 24, 64, 0.6) 0%, transparent 50%),
+                      radial-gradient(circle at 90% 80%, rgba(8, 48, 84, 0.4) 0%, transparent 50%);
+    color: var(--font-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1650px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* Glassmorphism Panels */
+.sidebar-panel, .search-container, .live-date-badge, .hero-status-card, .forecast-panel, .metric-tile {
+    background: var(--glass-matte);
+    border: 1px solid var(--glass-border-light);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+}
+
+/* Sidebar Organization */
+.sidebar-panel { padding: 2.5rem; display: flex; flex-direction: column; gap: 3.5rem; }
+.brand-header { display: flex; align-items: center; gap: 0.85rem; color: var(--neon-cyan); }
+.brand-header h2 { font-weight: 700; font-size: 1.4rem; color: var(--font-primary); }
+.brand-logo { width: 30px; height: 30px; }
+
+.navigation-box h3 { font-size: 1.1rem; margin-bottom: 0.15rem; font-weight: 600; }
+.sub-heading { font-size: 0.85rem; color: var(--font-secondary); display: block; margin-bottom: 2rem; }
+
+.input-element { margin-bottom: 1.5rem; }
+.input-element label { display: block; font-size: 0.8rem; color: var(--font-secondary); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+.interactive-dropdown {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border-light);
+    color: var(--font-primary);
+    padding: 1rem;
+    border-radius: 14px;
+    outline: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+.interactive-dropdown:focus { border-color: var(--neon-cyan); }
+.interactive-dropdown option { background: var(--bg-deep-space); color: var(--font-primary); }
+.interactive-dropdown:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.scan-button {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 1.1rem;
+    border-radius: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+.scan-button:not(:disabled):hover {
+    background: var(--neon-cyan);
+    color: var(--bg-deep-space);
+    box-shadow: 0 0 25px var(--neon-glow);
+}
+.scan-button:disabled { border-color: var(--glass-border-light); color: var(--font-secondary); cursor: not-allowed; }
+
+/* Dashboard Workspace Layout */
+.main-interface { display: flex; flex-direction: column; gap: 2rem; }
+.interface-header { display: flex; justify-content: space-between; gap: 1.5rem; }
+.search-container { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.5rem; flex: 1; max-width: 550px; }
+.search-container input { background: transparent; border: none; outline: none; color: white; width: 100%; font-size: 1rem; }
+.live-date-badge { padding: 0.85rem 1.5rem; font-weight: 500; display: flex; align-items: center; color: var(--font-primary); }
+
+.metrics-workspace { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; }
+
+/* Large Atmospheric Hero Card */
+.hero-status-card {
+    grid-column: 1 / -1;
+    padding: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+.hero-meta h1 { font-size: 3.8rem; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 0.3rem; }
+.hero-meta p { font-size: 1.3rem; color: var(--neon-cyan); margin-bottom: 1.5rem; font-weight: 500; }
+.temperature-readout { font-size: 5.5rem; font-weight: 300; letter-spacing: -3px; }
+.giant-icon { width: 130px; height: 130px; color: var(--font-primary); filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); }
+
+/* Multi-Day Component */
+.forecast-panel { padding: 2.2rem; }
+.forecast-panel h3 { margin-bottom: 1.75rem; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.5px; }
+.forecast-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.forecast-element { background: rgba(0, 0, 0, 0.25); padding: 1.75rem 0.5rem; border-radius: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; transition: transform 0.3s ease, border-color 0.3s; border: 1px solid transparent; }
+.forecast-element:hover { transform: translateY(-4px); border-color: var(--glass-border-light); background: var(--glass-reactive); }
+.forecast-day-label { color: var(--font-secondary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.forecast-temp-readout { font-weight: 700; font-size: 1.25rem; }
+
+/* Sensor Tiles Grid */
+.aux-metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.metric-tile { padding: 1.85rem; display: flex; flex-direction: column; gap: 1.5rem; transition: background 0.3s; }
+.metric-tile:hover { background: var(--glass-reactive); }
+.tile-header { display: flex; justify-content: space-between; color: var(--font-secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.tile-header i { color: var(--neon-cyan); width: 18px; height: 18px; }
+.tile-body { font-size: 2.6rem; font-weight: 700; letter-spacing: -1px; }
+.tile-body small { font-size: 1.1rem; color: var(--font-secondary); font-weight: 500; }
+
+/* Mobile Adaptability */
+@media (max-width: 1100px) {
+    .dashboard-wrapper { grid-template-columns: 1fr; }
+    .metrics-workspace { grid-template-columns: 1fr; }
+}

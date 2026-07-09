@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero - Next-Gen Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar-panel">
+            <div class="brand-header">
+                <i data-lucide="cloud-lightning" class="brand-logo"></i>
+                <h2>Aero Weather</h2>
+            </div>
+            
+            <div class="navigation-box">
+                <h3>Global Control</h3>
+                <span class="sub-heading">Select any location on Earth</span>
+                
+                <div class="input-element">
+                    <label>Country</label>
+                    <select id="global-country-select" class="interactive-dropdown">
+                        <option value="" disabled selected>Downloading registry...</option>
+                    </select>
+                </div>
+
+                <div class="input-element">
+                    <label>State / Province</label>
+                    <select id="global-state-select" class="interactive-dropdown" disabled>
+                        <option value="" disabled selected>Select country first</option>
+                    </select>
+                </div>
+
+                <div class="input-element">
+                    <label>City</label>
+                    <select id="global-city-select" class="interactive-dropdown" disabled>
+                        <option value="" disabled selected>Select state first</option>
+                    </select>
+                </div>
+
+                <button id="execute-scan-btn" class="scan-button" disabled>
+                    <i data-lucide="radar"></i> Scan Environment
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-interface">
+            <header class="interface-header">
+                <div class="search-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="manual-city-search" placeholder="Or type any global city directly...">
+                </div>
+                <div class="live-date-badge" id="live-date-badge">--</div>
+            </header>
+
+            <div class="metrics-workspace">
+                <div class="hero-status-card">
+                    <div class="hero-meta">
+                        <h1 id="active-location">Awaiting Selection</h1>
+                        <p id="active-condition">System ready</p>
+                        <div class="temperature-readout" id="active-temp">--°C</div>
+                    </div>
+                    <div class="hero-graphic" id="hero-graphic-element">
+                        <i data-lucide="orbit" class="giant-icon"></i>
+                    </div>
+                </div>
+
+                <div class="forecast-panel">
+                    <h3>Extended Multi-Day Forecast</h3>
+                    <div class="forecast-row" id="forecast-row-container">
+                        </div>
+                </div>
+
+                <div class="aux-metrics-grid">
+                    <div class="metric-tile">
+                        <div class="tile-header"><span>Wind Velocity</span> <i data-lucide="wind"></i></div>
+                        <div class="tile-body"><span id="tile-wind">--</span> <small>km/h</small></div>
+                    </div>
+                    <div class="metric-tile">
+                        <div class="tile-header"><span>Relative Humidity</span> <i data-lucide="droplet"></i></div>
+                        <div class="tile-body"><span id="tile-humidity">--</span> <small>%</small></div>
+                    </div>
+                    <div class="metric-tile">
+                        <div class="tile-header"><span>Thermal Index</span> <i data-lucide="thermometer"></i></div>
+                        <div class="tile-body"><span id="tile-feels">--</span> <small>°C</small></div>
+                    </div>
+                    <div class="metric-tile">
+                        <div class="tile-header"><span>Precipitation</span> <i data-lucide="cloud-rain"></i></div>
+                        <div class="tile-body"><span id="tile-rain">--</span> <small>mm</small></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
